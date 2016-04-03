@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "ms.iwillia.shidoin"
+        },
+        "cordova-sqlite-ext": {
+            "PACKAGE_NAME": "ms.iwillia.shidoin"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "ms.iwillia.shidoin"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "ms.iwillia.shidoin"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "ms.iwillia.shidoin"
+        }
+    }
+}
