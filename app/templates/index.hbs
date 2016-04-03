@@ -1,0 +1,8 @@
+{{#link-to 'goal-new'}}New Goal{{/link-to}}
+<br>
+{{#each model as |goal|}}
+    {{goal.goal_id}}:
+    {{goal.name}}
+    <br>
+{{/each}}
+{{outlet}}

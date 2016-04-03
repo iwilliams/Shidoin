@@ -6,6 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('goal-new');
+  this.route('intro');
 });
 
 export default Router;

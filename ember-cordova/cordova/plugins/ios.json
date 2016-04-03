@@ -1,0 +1,28 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "shidoin"
+        },
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "shidoin"
+        },
+        "cordova-sqlite-ext": {
+            "PACKAGE_NAME": "shidoin"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "shidoin"
+        },
+        "cordova-plugin-app-event": {
+            "PACKAGE_NAME": "shidoin"
+        }
+    }
+}
