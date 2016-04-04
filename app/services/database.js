@@ -61,6 +61,19 @@ export default Ember.Service.extend({
         });
     },
 
+    deleteGoals() {
+        let db = this.get('db');
+
+        return new Ember.RSVP.Promise((res, rej) => {
+            db.executeSql("DELETE FROM goal", [], data => {
+                res(data);
+            }, error => {
+                console.log(error.message);
+                rej(error.message);
+            });
+        });
+    },
+
     /**
      * Make sure the database is all set up and ready to go
      */

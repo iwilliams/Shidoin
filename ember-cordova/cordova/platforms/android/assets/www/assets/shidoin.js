@@ -240,6 +240,16 @@ define('shidoin/routes/index', ['exports', 'ember', 'ember-cordova/mixins/device
     exports['default'] = _ember['default'].Route.extend(_emberCordovaMixinsDeviceSplashscreen['default'], {
         model: function model() {
             return this.get('database').getGoals();
+        },
+
+        actions: {
+            deleteGoals: function deleteGoals() {
+                var _this = this;
+
+                this.get('database').deleteGoals().then(function (d) {
+                    _this.refresh();
+                });
+            }
         }
     });
 });
@@ -316,6 +326,19 @@ define('shidoin/services/database', ['exports', 'ember'], function (exports, _em
                         res(data2.rows.item(0));
                     });
                 }, function (error) {
+                    rej(error.message);
+                });
+            });
+        },
+
+        deleteGoals: function deleteGoals() {
+            var db = this.get('db');
+
+            return new _ember['default'].RSVP.Promise(function (res, rej) {
+                db.executeSql("DELETE FROM goal", [], function (data) {
+                    res(data);
+                }, function (error) {
+                    console.log(error.message);
                     rej(error.message);
                 });
             });
@@ -399,7 +422,7 @@ define("shidoin/templates/application", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 3,
+            "line": 6,
             "column": 0
           }
         },
@@ -417,6 +440,18 @@ define("shidoin/templates/application", ["exports"], function (exports) {
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "shidoin");
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("img");
+        dom.setAttribute(el2, "src", "./shidoin.png");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
@@ -425,10 +460,10 @@ define("shidoin/templates/application", ["exports"], function (exports) {
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[0] = dom.createMorphAt(fragment, 4, 4, contextualElement);
         return morphs;
       },
-      statements: [["content", "outlet", ["loc", [null, [2, 0], [2, 10]]]]],
+      statements: [["content", "outlet", ["loc", [null, [5, 0], [5, 10]]]]],
       locals: [],
       templates: []
     };
@@ -501,20 +536,61 @@ define("shidoin/templates/index", ["exports"], function (exports) {
     var child0 = (function () {
       return {
         meta: {
-          "fragmentReason": {
-            "name": "missing-wrapper",
-            "problems": ["wrong-type"]
-          },
+          "fragmentReason": false,
           "revision": "Ember@2.3.0",
           "loc": {
             "source": null,
             "start": {
-              "line": 1,
+              "line": 3,
+              "column": 8
+            },
+            "end": {
+              "line": 5,
+              "column": 8
+            }
+          },
+          "moduleName": "shidoin/templates/index.hbs"
+        },
+        isEmpty: false,
+        arity: 1,
+        cachedFragment: null,
+        hasRendered: false,
+        buildFragment: function buildFragment(dom) {
+          var el0 = dom.createDocumentFragment();
+          var el1 = dom.createTextNode("            ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createElement("li");
+          var el2 = dom.createComment("");
+          dom.appendChild(el1, el2);
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n");
+          dom.appendChild(el0, el1);
+          return el0;
+        },
+        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
+          var morphs = new Array(1);
+          morphs[0] = dom.createMorphAt(dom.childAt(fragment, [1]), 0, 0);
+          return morphs;
+        },
+        statements: [["content", "goal.name", ["loc", [null, [4, 16], [4, 29]]]]],
+        locals: ["goal"],
+        templates: []
+      };
+    })();
+    var child1 = (function () {
+      return {
+        meta: {
+          "fragmentReason": false,
+          "revision": "Ember@2.3.0",
+          "loc": {
+            "source": null,
+            "start": {
+              "line": 8,
               "column": 0
             },
             "end": {
-              "line": 1,
-              "column": 31
+              "line": 8,
+              "column": 46
             }
           },
           "moduleName": "shidoin/templates/index.hbs"
@@ -537,62 +613,11 @@ define("shidoin/templates/index", ["exports"], function (exports) {
         templates: []
       };
     })();
-    var child1 = (function () {
-      return {
-        meta: {
-          "fragmentReason": false,
-          "revision": "Ember@2.3.0",
-          "loc": {
-            "source": null,
-            "start": {
-              "line": 3,
-              "column": 0
-            },
-            "end": {
-              "line": 7,
-              "column": 0
-            }
-          },
-          "moduleName": "shidoin/templates/index.hbs"
-        },
-        isEmpty: false,
-        arity: 1,
-        cachedFragment: null,
-        hasRendered: false,
-        buildFragment: function buildFragment(dom) {
-          var el0 = dom.createDocumentFragment();
-          var el1 = dom.createTextNode("    ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode(":\n    ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n    ");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createElement("br");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          return el0;
-        },
-        buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-          var morphs = new Array(2);
-          morphs[0] = dom.createMorphAt(fragment, 1, 1, contextualElement);
-          morphs[1] = dom.createMorphAt(fragment, 3, 3, contextualElement);
-          return morphs;
-        },
-        statements: [["content", "goal.goal_id", ["loc", [null, [4, 4], [4, 20]]]], ["content", "goal.name", ["loc", [null, [5, 4], [5, 17]]]]],
-        locals: ["goal"],
-        templates: []
-      };
-    })();
     return {
       meta: {
         "fragmentReason": {
           "name": "missing-wrapper",
-          "problems": ["wrong-type", "multiple-nodes"]
+          "problems": ["multiple-nodes", "wrong-type"]
         },
         "revision": "Ember@2.3.0",
         "loc": {
@@ -602,7 +627,7 @@ define("shidoin/templates/index", ["exports"], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 9,
+            "line": 11,
             "column": 0
           }
         },
@@ -614,15 +639,33 @@ define("shidoin/templates/index", ["exports"], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1, "id", "goals");
+        var el2 = dom.createTextNode("\n    ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("ul");
+        var el3 = dom.createTextNode("\n");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createComment("");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("    ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
+        dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
-        var el1 = dom.createElement("br");
+        var el1 = dom.createElement("button");
+        dom.setAttribute(el1, "class", "button");
+        var el2 = dom.createTextNode("Clear All");
+        dom.appendChild(el1, el2);
         dom.appendChild(el0, el1);
         var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
         var el1 = dom.createComment("");
         dom.appendChild(el0, el1);
@@ -631,14 +674,15 @@ define("shidoin/templates/index", ["exports"], function (exports) {
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(3);
-        morphs[0] = dom.createMorphAt(fragment, 0, 0, contextualElement);
-        morphs[1] = dom.createMorphAt(fragment, 4, 4, contextualElement);
-        morphs[2] = dom.createMorphAt(fragment, 5, 5, contextualElement);
-        dom.insertBoundary(fragment, 0);
+        var element0 = dom.childAt(fragment, [4]);
+        var morphs = new Array(4);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0, 1]), 1, 1);
+        morphs[1] = dom.createMorphAt(fragment, 2, 2, contextualElement);
+        morphs[2] = dom.createElementMorph(element0);
+        morphs[3] = dom.createMorphAt(fragment, 6, 6, contextualElement);
         return morphs;
       },
-      statements: [["block", "link-to", ["goal-new"], [], 0, null, ["loc", [null, [1, 0], [1, 43]]]], ["block", "each", [["get", "model", ["loc", [null, [3, 8], [3, 13]]]]], [], 1, null, ["loc", [null, [3, 0], [7, 9]]]], ["content", "outlet", ["loc", [null, [8, 0], [8, 10]]]]],
+      statements: [["block", "each", [["get", "model", ["loc", [null, [3, 16], [3, 21]]]]], [], 0, null, ["loc", [null, [3, 8], [5, 17]]]], ["block", "link-to", ["goal-new"], ["class", "button"], 1, null, ["loc", [null, [8, 0], [8, 58]]]], ["element", "action", ["deleteGoals"], [], ["loc", [null, [9, 23], [9, 47]]]], ["content", "outlet", ["loc", [null, [10, 0], [10, 10]]]]],
       locals: [],
       templates: [child0, child1]
     };
@@ -820,7 +864,7 @@ catch(err) {
 
 /* jshint ignore:start */
 if (!runningTests) {
-  require("shidoin/app")["default"].create({"name":"shidoin","version":"0.0.0+e9e89a34"});
+  require("shidoin/app")["default"].create({"name":"shidoin","version":"0.0.0+8a756de6"});
 }
 /* jshint ignore:end */
 //# sourceMappingURL=shidoin.map

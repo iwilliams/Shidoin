@@ -189,7 +189,7 @@ define('shidoin/tests/routes/index.jshint', ['exports'], function (exports) {
   QUnit.module('JSHint - routes/index.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'routes/index.js should pass jshint.');
+    assert.ok(false, 'routes/index.js should pass jshint.\nroutes/index.js: line 11, col 53, \'d\' is defined but never used.\n\n1 error');
   });
 });
 define('shidoin/tests/routes/intro.jshint', ['exports'], function (exports) {
@@ -207,7 +207,7 @@ define('shidoin/tests/services/database.jshint', ['exports'], function (exports)
   QUnit.module('JSHint - services/database.js');
   QUnit.test('should pass jshint', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'services/database.js should pass jshint.\nservices/database.js: line 72, col 38, Missing semicolon.\nservices/database.js: line 113, col 20, \'data\' is defined but never used.\n\n2 errors');
+    assert.ok(false, 'services/database.js should pass jshint.\nservices/database.js: line 85, col 38, Missing semicolon.\nservices/database.js: line 126, col 20, \'data\' is defined but never used.\n\n2 errors');
   });
 });
 define('shidoin/tests/test-helper', ['exports', 'shidoin/tests/helpers/resolver', 'ember-qunit'], function (exports, _shidoinTestsHelpersResolver, _emberQunit) {

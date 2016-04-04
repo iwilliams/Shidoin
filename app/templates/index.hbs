@@ -1,8 +1,10 @@
-{{#link-to 'goal-new'}}New Goal{{/link-to}}
-<br>
-{{#each model as |goal|}}
-    {{goal.goal_id}}:
-    {{goal.name}}
-    <br>
-{{/each}}
+<div id="goals">
+    <ul>
+        {{#each model as |goal|}}
+            <li>{{goal.name}}</li>
+        {{/each}}
+    </ul>
+</div>
+{{#link-to 'goal-new' class="button"}}New Goal{{/link-to}}
+<button class="button" {{action 'deleteGoals'}}>Clear All</button>
 {{outlet}}
